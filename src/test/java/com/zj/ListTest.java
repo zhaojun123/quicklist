@@ -1,6 +1,7 @@
 package com.zj;
 
 
+import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -66,8 +67,58 @@ public class ListTest {
         getPosition(100000,100000,1);
     }
 
+    /**
+     * 初始化一百万数据，随机删除十万次
+     */
+    @Test
+    public void removeRandomTest(){
+        removeRandom(1000000,100000);
+    }
 
+    /**
+     * 测试quickList add、get、remove 业务正确性
+     */
+    @Test
+    public void test(){
+        int[] randoms = randoms(100000);
+        ArrayList<Integer> arrayList = new ArrayList();
+        QuickList<Integer> quickList = new QuickList(3);
 
+        for(int i=0;i<randoms.length;i++){
+            arrayList.add(randoms[i],i);
+            quickList.add(randoms[i],i);
+        }
+
+        System.err.println("randoms add test finish");
+
+        for(int i=0;i<randoms.length;i++){
+            int arrayResult = arrayList.get(i);
+            int quickResult = quickList.get(i);
+            Assert.assertEquals(arrayResult,quickResult);
+        }
+
+        System.err.println("order get test finish");
+
+        for(int i=0;i<randoms.length;i++){
+            int arrayResult = arrayList.get(randoms[i]);
+            int quickResult = quickList.get(randoms[i]);
+            Assert.assertEquals(arrayResult,quickResult);
+        }
+
+        System.err.println("randoms get test finish");
+
+        int[] removeRandoms = randoms(randoms.length);
+        for(int i=randoms.length-1;i>=0;i--){
+            arrayList.add(randoms[i],i);
+            quickList.add(randoms[i],i);
+            int arrayResult = arrayList.remove(removeRandoms[i]);
+            int quickResult = quickList.remove(removeRandoms[i]);
+            Assert.assertEquals(arrayResult,quickResult);
+        }
+        System.err.println("randoms add and remove test finish");
+
+        Assert.assertEquals(arrayList.size(),quickList.size());
+    }
 
     public void addPosition(int count, double ratio){
         for(Class<List> c:listClass){
@@ -163,4 +214,20 @@ public class ListTest {
         System.err.println(System.currentTimeMillis()-begin+"----"+list.getClass()+"----addRandom");
     }
 
+    public void removeRandom(int initSize,int count){
+        int[] randoms = randoms(count);
+        for(Class<List> c:listClass){
+            List list = create(c);
+            init(list,initSize);
+            removeRandom(list,randoms);
+        }
+    }
+
+    public void removeRandom(List<Integer> list,int[] randoms){
+        long begin = System.currentTimeMillis();
+        for(int i=randoms.length-1;i>=0;i--){
+            list.remove(randoms[i]);
+        }
+        System.err.println(System.currentTimeMillis()-begin+"----"+list.getClass()+"----addRandom");
+    }
 }
