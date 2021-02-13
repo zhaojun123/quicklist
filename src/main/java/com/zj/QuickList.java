@@ -218,6 +218,12 @@ public class QuickList<E> extends AbstractSequentialList<E> implements Deque<E>,
         if(size==0){
             return new NodePosition(null,0);
         }
+        if(index == 0){
+            return new NodePosition(first,0);
+        }
+        if(index == size){
+            return new NodePosition(last,last.size);
+        }
         //如果index 在前半段就从前向后遍历查找，否则从后向前
         int middle = size>>1;
         if(index<=middle){

@@ -75,6 +75,8 @@ public class ListTest {
         removeRandom(1000000,100000);
     }
 
+
+
     /**
      * 测试quickList add、get、remove 业务正确性
      */
@@ -118,6 +120,26 @@ public class ListTest {
         System.err.println("randoms add and remove test finish");
 
         Assert.assertEquals(arrayList.size(),quickList.size());
+    }
+
+    /**
+     * 测试十万数据remove(0) 操作
+     */
+    @Test
+    public void pollTest(){
+        poll(100000);
+    }
+
+    public void poll(int count){
+        for(Class<List> c:listClass){
+            List list = create(c);
+            init(list,count);
+            long begin = System.currentTimeMillis();
+            for(int i=1;i<count;i++){
+                list.remove(0);
+            }
+            System.err.println(System.currentTimeMillis()-begin+"----"+list.getClass()+"----remove");
+        }
     }
 
     public void addPosition(int count, double ratio){
@@ -228,6 +250,6 @@ public class ListTest {
         for(int i=randoms.length-1;i>=0;i--){
             list.remove(randoms[i]);
         }
-        System.err.println(System.currentTimeMillis()-begin+"----"+list.getClass()+"----addRandom");
+        System.err.println(System.currentTimeMillis()-begin+"----"+list.getClass()+"----removeRandom");
     }
 }
