@@ -692,17 +692,4 @@ public class QuickList<E> extends AbstractSequentialList<E> implements Deque<E>,
         }
     }
 
-    public static void main(String[] args) {
-        QuickList quickList = new QuickList(3);
-        ListIterator<Integer> listIterator = quickList.listIterator();
-        for(int i=0;i<10;i++){
-            listIterator.add(i);
-        }
-        listIterator = quickList.listIterator();
-        for(int i=0;i<10;i++){
-            System.err.println(listIterator.next());
-            System.err.println(listIterator.previous());
-        }
-        System.err.println(quickList);
-    }
 }
