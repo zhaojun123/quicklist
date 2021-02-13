@@ -19,6 +19,7 @@ public class ListTest {
     @Test
     public void addRandomTest(){
         addRandom(100000);
+        addRandom(100000);
     }
 
     /**
@@ -26,6 +27,20 @@ public class ListTest {
      */
     @Test
     public void addPostionTest(){
+
+        addPosition(100000,0);
+        System.err.println();
+        addPosition(100000,0.1);
+        System.err.println();
+        addPosition(100000,0.3);
+        System.err.println();
+        addPosition(100000,0.5);
+        System.err.println();
+        addPosition(100000,0.7);
+        System.err.println();
+        addPosition(100000,0.9);
+        System.err.println();
+        addPosition(100000,1);
 
         addPosition(100000,0);
         System.err.println();
@@ -48,10 +63,25 @@ public class ListTest {
     @Test
     public void getRandomTest(){
         getRandom(1000000,100000);
+        getRandom(1000000,100000);
     }
 
     @Test
     public void getPositionTest(){
+        getPosition(100000,100000,0);
+        System.err.println();
+        getPosition(100000,100000,0.1);
+        System.err.println();
+        getPosition(100000,100000,0.3);
+        System.err.println();
+        getPosition(100000,100000,0.5);
+        System.err.println();
+        getPosition(100000,100000,0.7);
+        System.err.println();
+        getPosition(100000,100000,0.9);
+        System.err.println();
+        getPosition(100000,100000,1);
+
         getPosition(100000,100000,0);
         System.err.println();
         getPosition(100000,100000,0.1);
@@ -72,6 +102,7 @@ public class ListTest {
      */
     @Test
     public void removeRandomTest(){
+        removeRandom(1000000,100000);
         removeRandom(1000000,100000);
     }
 
@@ -127,6 +158,7 @@ public class ListTest {
      */
     @Test
     public void pollTest(){
+        poll(100000);
         poll(100000);
     }
 
